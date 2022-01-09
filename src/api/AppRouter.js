@@ -1,19 +1,17 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import Login from "../pages/Login";
-import SignUp from "../pages/SignUp";
-import isGuest from './../guards/isGuest';
-import { useUser } from './../context/UserCtx';
+import Login from './../components/userForms/Login';
+import SignUp from './../components/userForms/SignUp';
+import HomePage from './../pages/HomePage';
+import UserLibrary from './../pages/UserLibraryPage';
 
 function AppRouter() {
-  const {currentUser} = useUser();
-
   return (
     <Routes>
-      <Route exact path="/" element={<Home />} />
+      <Route exact path="/" element={<HomePage />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/signup" element={<SignUp />} />
+      <Route exact path="/userLibrary" element={<UserLibrary/>} />
     </Routes>
   );
 }

@@ -1,0 +1,22 @@
+.homeContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 25rem;
+    width: 50%;
+    margin-left: 25%;
+    a{
+        padding: 1rem;
+        font-size: 2rem;
+        font-weight: 500;
+        background-color: #513385;
+        border-radius: 1rem;
+        color: white;
+        width: 80%;
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+    }
+    a:Hover{
+        background-color: #9183b8;;
+    }
+}

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 
-
 const UserCtx = React.createContext();
 
 export const useUser = () => {
@@ -8,12 +7,15 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (currentUser === null || currentUser === undefined) {
-      setCurrentUser({});
+    if (Object.entries(currentUser).length === 0) {
+      const userLocalData = sessionStorage.getItem("token");
+      if (userLocalData) {
+        setCurrentUser(userLocalData);
+      }
       setIsLoading(false);
     }
     setIsLoading(false);
@@ -22,11 +24,10 @@ export const UserProvider = ({ children }) => {
   const updateUserContext = (newUserInfo) => {
     sessionStorage.setItem("token", newUserInfo.token);
     setCurrentUser(newUserInfo);
-    setIsLoading(false);
   };
   const clearUserInfo = () => {
     setCurrentUser({});
-    setIsLoading(false);
+    sessionStorage.clear();
   };
 
   const value = {

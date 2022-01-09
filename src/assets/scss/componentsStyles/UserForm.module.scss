@@ -1,0 +1,38 @@
+.formContainer {
+    display: flex;
+    justify-content: center;
+    width: 70rem;
+    margin: auto;
+    margin-top: 20rem;
+      &-form {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          justify-content: space-between;
+          color: #296cfb;
+          width: 45rem;
+          input{
+              margin: 1rem;
+              padding: 1rem;
+          }
+          &-btnBox{
+              display: flex;
+              justify-content: center;
+              height: 4rem;
+              margin-top: 1rem;
+              button{
+                  background-color: transparent;
+                  color: white;
+                  font-size: 2rem;
+                  padding-left: 2rem;
+                  padding-right: 2rem;
+                  border: 1px solid #b7b7e6;
+                  cursor: pointer;
+              }
+              button:hover{
+                  background-color: rgb(67, 67, 94);
+              }
+          }
+      }
+  }
+  

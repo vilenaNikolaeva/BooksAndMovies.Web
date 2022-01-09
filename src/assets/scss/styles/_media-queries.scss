@@ -1,0 +1,146 @@
+@mixin respond($breakpoint) {
+    @if $breakpoint==lower320 {
+        @media (max-width: 320px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint==lower375 {
+        @media (max-width: 375px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint==lower400 {
+        @media (max-width: 400px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint==lower410 {
+        @media (max-width: 410px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint==lower416 {
+        @media (max-width: 416px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint==lower425 {
+        @media (max-width: 425px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint==lower430 {
+        @media (max-width: 430px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint==lower450 {
+        @media (max-width: 450px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower470 {
+        @media (max-width: 470px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint==lower500 {
+        @media (max-width: 500px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint==lower540 {
+        @media (max-width: 540px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower600 {
+        @media (max-width: 600px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower620 {
+        @media (max-width: 620px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower770 {
+        @media (max-width: 770px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower640 {
+        @media (max-width: 640px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower768 {
+        @media (max-width: 768px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower800 {
+        @media (max-width: 800px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower900 {
+        @media (max-width: 900px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower991 {
+        @media (max-width: 991px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower1024 {
+        @media (max-width: 1024px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower1200 {
+        @media (max-width: 1200px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower1440 {
+        @media (max-width: 1440px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower1500 {
+        @media (max-width: 1500px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower1800 {
+        @media (max-width: 1800px) {
+            @content;
+        }
+    }
+    @if $breakpoint==more1800 {
+        @media (min-width: 1800px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower2000 {
+        @media (max-width: 2000px) {
+            @content;
+        }
+    }
+    @if $breakpoint==more2000 {
+        @media (mminax-width: 2000px) {
+            @content;
+        }
+    }
+}

@@ -1,15 +1,12 @@
 import React from "react";
-import Header from './../components/Header';
-import Footer from './../components/Footer';
+import styles from "../assets/scss/componentsStyles/PageWrapper.module.scss"
 
 const PageWrapper = ({ children }) => {
   return (
-    <div>
+    <div className={styles.wrapper}>
       <div>
-        <Header />
         {children}
       </div>
-      <Footer />
     </div>
   );
 };

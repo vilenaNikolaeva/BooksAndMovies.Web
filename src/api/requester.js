@@ -19,7 +19,6 @@ function get(endpoint) {
 
 //Function to return POST promise
 function post(endpoint, data) {
-    console.log(data);
     return fetch(BASE_URL + endpoint, {
         method: 'POST',
         headers: {

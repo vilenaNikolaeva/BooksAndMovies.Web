@@ -1,0 +1,28 @@
+@import '../styles/media-queries';
+
+html {
+    font-size: 62.5%;
+
+    @include respond(lower1440) {
+        & {
+            font-size: 56.25%; // 1 rem = 9px
+        }
+    }
+
+    @include respond(lower600) {
+        & {
+            font-size: 50%; // 1 rem = 8px
+        }
+    }
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+    /* This will not allow padding and borders to be added to the dimensions of the boxes */
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}

@@ -1,0 +1,32 @@
+.headerContainer {
+  height: 6rem;
+  display: flex;
+  justify-content: end;
+  padding: 4rem;
+  list-style-type: none;
+  font-size: 2rem;
+  font-weight: 500;
+
+    li{
+        margin-right: 3rem;
+        padding: 1rem;
+        a {
+        color: white;
+        padding: 0.9rem;
+        border: 1px solid rgb(183, 183, 230);
+        }
+        a:hover {
+        background-color: rgb(67, 67, 94);
+        }
+    }
+    &-logout{
+        height: 4.5rem;
+        background-color: transparent;
+        color: white;
+        font-size: 2rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        border: 1px solid #b7b7e6;
+        cursor: pointer;
+    }
+}
