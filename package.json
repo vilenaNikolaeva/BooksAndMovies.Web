@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-pdf-viewer/core": "^3.0.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "firebase": "^9.6.2",
+    "pdfjs-dist": "^2.11.338",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-pdf": "^5.6.0",

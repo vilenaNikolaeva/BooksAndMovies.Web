@@ -1,0 +1,13 @@
+.modalBackground {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(112, 130, 170, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}

@@ -6,9 +6,23 @@
   height: 100%;
   margin: 2rem;
   border-radius: 2rem;
-  .image{
-    justify-content: center;
-  }
+    img{
+      justify-content: center;
+      margin:auto;
+    }
+    input{
+      margin:1rem;
+    }
+    a{
+      background-color: #35304d;
+      color: white;
+      height: 4rem;
+      border-color: white;
+      cursor: pointer;
+      border-radius: 2rem;
+      padding: 1rem;
+      border: 1px solid white;
+    }
     button{
       background-color: rgb(53 48 77);;
       color: white;
@@ -17,7 +31,7 @@
       cursor: pointer;
       border-radius: 2rem;
     }
-    button:hover{
+    button:hover, a:hover{
       background-color: #b96262;
     }
 }

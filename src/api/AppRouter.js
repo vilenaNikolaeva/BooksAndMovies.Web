@@ -4,6 +4,8 @@ import Login from './../components/userForms/Login';
 import SignUp from './../components/userForms/SignUp';
 import HomePage from './../pages/HomePage';
 import UserLibrary from './../pages/UserLibraryPage';
+import BooksContainer from './../components/BooksContainer';
+import MoviesContainer from './../components/MoviesContainer';
 
 function AppRouter() {
   return (
@@ -12,6 +14,8 @@ function AppRouter() {
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/signup" element={<SignUp />} />
       <Route exact path="/userLibrary" element={<UserLibrary/>} />
+      <Route exact path="/booksContainer" element={<BooksContainer/>} />
+      <Route exact path="/moviesCOntainer" element={<MoviesContainer/>} />
     </Routes>
   );
 }
