@@ -1,34 +1,30 @@
 import react, { useState, useEffect } from "react";
-import { Document, Page, pdfjs } from "react-pdf";
 import styles from "../assets/scss/componentsStyles/BookReader.module.scss";
 import { useCatalog } from "./../context/CatalogCtx";
 import ModalWrapper from "./../wrappers/ModalWrapper";
 import { useModal } from "./../context/ModalCtx";
-import { Viewer } from "@react-pdf-viewer/core";
-import "@react-pdf-viewer/core/lib/styles/index.css";
 
 const BookReader = () => {
   const { isOpenBookReader, closeModal } = useModal();
   const { book } = useCatalog();
-  const file = (pdfjs.getFilenameFromUrl.workerSrc = String(book.bookFileUrl));
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
+  // const [numPages, setNumPages] = useState(null);
+  // const [pageNumber, setPageNumber] = useState(1);
 
-  const onDocumentLoadSuccess = ({ numPages }) => {
-    console.log(numPages);
-    setNumPages(numPages);
-  };
-  const changePage = (offset) => {
-    setPageNumber((prevPageNumber) => prevPageNumber + offset);
-  };
+  // const onDocumentLoadSuccess = ({ numPages }) => {
+  //   console.log(numPages);
+  //   setNumPages(numPages);
+  // };
+  // const changePage = (offset) => {
+  //   setPageNumber((prevPageNumber) => prevPageNumber + offset);
+  // };
 
-  const previousPage = () => {
-    changePage(-1);
-  };
+  // const previousPage = () => {
+  //   changePage(-1);
+  // };
 
-  const nextPage = () => {
-    changePage(1);
-  };
+  // const nextPage = () => {
+  //   changePage(1);
+  // };
 
   return (
     <ModalWrapper
@@ -36,7 +32,9 @@ const BookReader = () => {
       isOpenModalComponent={isOpenBookReader}
     >
       <div>
-        <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
+        {/* <Document
+         file={samplePDF}
+         onLoadSuccess={onDocumentLoadSuccess}>
           <Page style={styles["modalContent-page"]} pageNumber={pageNumber} />
         </Document>
         <p>
@@ -51,7 +49,7 @@ const BookReader = () => {
           onClick={nextPage}
         >
           Next
-        </button>
+        </button> */}
       </div>
     </ModalWrapper>
   );

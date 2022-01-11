@@ -7,7 +7,6 @@ export const useModal = () => useContext(ModalCtx);
 export const ModalProvider = ({ children }) => {
     const [selectedId, setSelectedId] = useState(null);
     const [isOpenBookReader, setIsOpenBookReader] = useState(false);
-    console.log(isOpenBookReader);
     const showBookReader = () => {
         setIsOpenBookReader(true);
     }

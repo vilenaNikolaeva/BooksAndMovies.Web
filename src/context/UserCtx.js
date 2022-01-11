@@ -13,8 +13,10 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (Object.entries(currentUser).length === 0) {
       const userLocalData = sessionStorage.getItem("token");
-      if (userLocalData) {
-        setCurrentUser(userLocalData);
+      const userLocalData2 = sessionStorage.getItem("userId");
+      if (userLocalData && userLocalData2) {
+        console.log('in if')
+        setCurrentUser({"token":userLocalData, "userId": userLocalData2});
       }
       setIsLoading(false);
     }
@@ -23,6 +25,7 @@ export const UserProvider = ({ children }) => {
 
   const updateUserContext = (newUserInfo) => {
     sessionStorage.setItem("token", newUserInfo.token);
+    sessionStorage.setItem("userId",newUserInfo.userId)
     setCurrentUser(newUserInfo);
   };
   const clearUserInfo = () => {
