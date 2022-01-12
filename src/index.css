@@ -20,7 +20,8 @@ html {
 body {
   padding: 0;
   margin: 0;
-  background-color: rgb(53, 48, 77);
+  /* background-color: rgb(53, 48, 77); */
+  background: radial-gradient(ellipse at bottom, #442a60 0%, #1e202e 100%);
 }
 a {
   text-decoration: none;

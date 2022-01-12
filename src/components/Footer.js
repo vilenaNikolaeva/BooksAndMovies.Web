@@ -2,7 +2,11 @@ import React from "react";
 
 const Footer = () =>{
     return (
-        <h4>Footer</h4>
+        <div>
+            <a href="/">opa</a>
+            <a href="/">lqq</a>
+            <a href="/">ihu</a>
+        </div>
     )
 }
 export default Footer;

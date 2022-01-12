@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import requester from "../api/requester";
+import requester from "../../api/requester";
 import BookContent from "./BookContent.js";
-import styles from "../assets/scss/componentsStyles/BooksContainer.module.scss";
+import styles from "../../assets/scss/componentsStyles/BooksContainer.module.scss";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 const BooksContainer = () => {

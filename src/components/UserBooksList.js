@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import requester from "../api/requester";
 import { useUser } from "../context/UserCtx";
-import BookContent from "./BookContent.js";
+import BookContent from "./book/BookContent.js";
 import styles from '../assets/scss/componentsStyles/UserBooksList.module.scss';
 
 const UserBooksList = () => {
@@ -12,11 +12,9 @@ const UserBooksList = () => {
   useEffect(() => {
     if (isLoading) return;
     setIsLoading(true);
-    console.log(currentUser.userId);
     requester
-      .get(`Book/allUserBooks?id=${currentUser.userId}`)
+      .get(`User/Books?id=${currentUser.userId}`)
       .then((res) => {
-        console.log(res);
         setBooksList(res);
         setIsLoading(false);
       })
@@ -26,9 +24,9 @@ const UserBooksList = () => {
 
   return (
     <div className={styles.booksListContainer} >
-      <h1>Your Book Library</h1>
+      <h1>Your Books</h1>
       {booksList?.map((b, index) => (
-        <BookContent key={index} book={b} list={"list"} />
+        <BookContent key={index} book={b} list={"list"} setBooksList={setBooksList} />
       ))}
     </div>
   );

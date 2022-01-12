@@ -4,7 +4,6 @@ function getToken() {
     return 'Bearer ' + sessionStorage.token;
 }
 
-//Function to return GET promise
 function get(endpoint) {
     return fetch(BASE_URL + endpoint, {
         method: 'GET',
@@ -17,7 +16,6 @@ function get(endpoint) {
         .catch(err => console.log(err));
 }
 
-//Function to return POST promise
 function post(endpoint, data) {
     return fetch(BASE_URL + endpoint, {
         method: 'POST',
@@ -30,7 +28,6 @@ function post(endpoint, data) {
         .then(res => res.json())
         .catch(err => console.log(err));
 }
-//Function to return PUT promise
 function put(endpoint, data) {
     return fetch(BASE_URL + endpoint, {
         method: 'PUT',
@@ -43,38 +40,24 @@ function put(endpoint, data) {
         .then(res => res.json())
         .catch(err => console.log(err));
 }
-// //Function to return PUT FormData promise
-// function putFormData(endpoint, formData) {
-//     return fetch(BASE_URL + endpoint, {
-//         method: 'PUT',
-//         headers: {
-//             'Authorization': getToken()
-//         },
-//         body: formData
-//     })
-//         .then(res => res.json())
-//         .catch(err => console.log(err));
-// }
 
-// // Function to return DELETE promise
-// function remove (endpoint) {
-//     return fetch(BASE_URL + endpoint, {
-//         method: 'DELETE',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'Authorization': getToken()
-//         }
-//     })
-//         .then(res => res.json())
-//         .catch(err => console.log(err));
-// }
+function remove (endpoint) {
+    return fetch(BASE_URL + endpoint, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': getToken()
+        }
+    })
+        .then(res => res.json())
+        .catch(err => console.log(err));
+}
 
 let requester = {
     get,
     post,
     put,
-    // putFormData,
-    // remove
+    remove
 };
 
 export default requester;

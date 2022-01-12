@@ -1,21 +1,44 @@
 .movieContent {
-    background-color: #f5b3b4;
+    background-color: transparent;
+    border:1px solid white;
     display: inline-flex;
     flex-direction: column;
     width: 30rem;
-    height: 100%;
-    margin: 2rem;
+    max-height: 70%;
     border-radius: 2rem;
-      button{
-        background-color: rgb(53 48 77);;
-        color: white;
-        height: 4rem;
-        border-color: white;
-        cursor: pointer;
-        border-radius: 2rem;
-      }
-      button:hover{
-        background-color: #b96262;
-      }
+    padding-top:2rem;
+    &-genre{
+      color: white;
+      padding: 2rem;
+      justify-content: space-evenly;
+      display: flex;
+      word-break: break-word;
+      font-weight: 600;
+    }
+    img {
+      justify-content: center;
+      margin: auto;
+    }
+    &-btnAdd, &-btnWatch {
+      background-color: rgb(53 48 77);;
+      color: white;
+      height: 5rem;
+      border-color: white;
+      cursor: pointer;
+      border-radius: 2rem;
+    }
+    &-btnAdd:hover
+    {
+      background-color: #da656b;
+      color:rgb(53 48 77);
+      font-weight: 700;
+    }
+    &-btnWatch:hover{
+      background-color: #5b65ec;
+      color:white;
+      font-weight: 700;
+    }
   }
-  
+  .movieContent:hover{
+    background-color:#55416e;
+  }

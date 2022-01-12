@@ -1,0 +1,18 @@
+.playerContainer {
+  width: 50%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  flex-direction: column;
+  &-closeBtn {
+    width: 5%;
+    background-color: transparent;
+    color: white;
+    font-weight: 900;
+    cursor: pointer;
+  }
+  &-closeBtn:hover{
+      background-color: #442a60;
+  }
+}

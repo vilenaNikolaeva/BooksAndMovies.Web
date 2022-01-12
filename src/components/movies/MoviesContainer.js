@@ -1,6 +1,6 @@
 import React , { useState, useEffect} from "react";
-import styles from "../assets/scss/componentsStyles/MoviesContainer.module.scss";
-import requester from '../api/requester';
+import styles from "../../assets/scss/componentsStyles/MoviesContainer.module.scss";
+import requester from '../../api/requester';
 import MovieContent from './MovieContent';
 
 const MoviesContainer = () => {

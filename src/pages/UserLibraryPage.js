@@ -1,15 +1,25 @@
-import React from "react";
+import React ,{useState}from "react";
 import PageWrapper from "./../wrappers/PageWrapper";
-import UserBooksList from './../components/UserBooksList.js';
+import UserBooksList from "./../components/UserBooksList.js";
+import UserMoviesList from "./../components/UserMoviesList";
+import styles from "../assets/scss/componentsStyles/UserLibraryPage.module.scss";
 
 const UserLibrary = () => {
+  const[ showBooks,setShowBooks]=useState(true);
+  const[ showMovies,setShowmovies]=useState(true);
+
   return (
     <PageWrapper>
-      <div>
+      <div className={styles.libraryContainer}>
+        <button onClick={()=>setShowBooks(!showBooks)}>Books</button>
+        <button onClick={()=>setShowmovies(!showMovies)}>Movies</button>
+      </div>
+      <div   hidden={showBooks}>
         <UserBooksList/>
       </div>
-      <div>Your Movies</div>
-      <div>Your Tv Series</div>
+      <div  hidden={showMovies}>
+      <UserMoviesList/>
+      </div>
     </PageWrapper>
   );
 };

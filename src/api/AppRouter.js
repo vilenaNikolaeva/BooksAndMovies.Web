@@ -4,8 +4,8 @@ import Login from './../components/userForms/Login';
 import SignUp from './../components/userForms/SignUp';
 import HomePage from './../pages/HomePage';
 import UserLibrary from './../pages/UserLibraryPage';
-import BooksContainer from './../components/BooksContainer';
-import MoviesContainer from './../components/MoviesContainer';
+import BooksContainer from './../components/book/BooksContainer';
+import MoviesContainer from './../components/movies/MoviesContainer';
 
 function AppRouter() {
   return (

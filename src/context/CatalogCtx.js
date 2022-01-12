@@ -8,6 +8,7 @@ export const useCatalog = () => {
 
 export const CatalogProvider = ({ children }) => {
   const [book, setBook] = useState({});
+  const [movie,setMovie]= useState({})
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -15,16 +16,20 @@ export const CatalogProvider = ({ children }) => {
   }, [book]);
 
   const updateBookContext = (bookInfo) => {
-    console.log(bookInfo);
     setBook(bookInfo)
   };
+  const updateMovieContext = (newMovie)=>{
+    setMovie(newMovie);
+  }
   const clearBookInfo= () => {
     setBook({});
   };
 
   const value = {
     book,
+    movie,
     updateBookContext,
+    updateMovieContext,
     isLoading,
     clearBookInfo,
   };
