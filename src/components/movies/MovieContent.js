@@ -1,21 +1,34 @@
 import React from "react";
-import styles from "../../assets/scss/componentsStyles/MovieContent.module.scss";
+import { useModal } from "./../../context/ModalCtx";
 import { useUser } from "./../../context/UserCtx";
 import { useCatalog } from "./../../context/CatalogCtx";
 import requester from "./../../api/requester";
-import { useModal } from "./../../context/ModalCtx";
+import ReactStars from "react-rating-stars-component";
 import ReactPlayer from "react-player";
+import { FaVideo } from "react-icons/fa";
+
+import styles from "../../assets/scss/componentsStyles/MovieContent.module.scss";
 
 const MovieContent = ({ movie, list, setMovieList }) => {
   const { setIsOpenMoviePlayer } = useModal();
-  const { currentUser } = useUser();
   const { updateMovieContext } = useCatalog();
+  const { currentUser } = useUser();
 
   const handleClick = () => {
     updateMovieContext(movie);
     setIsOpenMoviePlayer(true);
   };
 
+  const ratingChanged = (rating) => {
+    requester
+      .post(`User/MovieRating`, {
+        userId: currentUser.userId,
+        movieId: movie.id,
+        rating: rating,
+      })
+      .then((res) => (console.log(res), updateMovieContext(res)))
+      .finally((fnl) => console.log(fnl));
+  };
   const handleAddMovieToLibrary = (movieId) => {
     return requester
       .post(`User/Movie/?userId=${currentUser.userId}&id=${movieId}`)
@@ -32,34 +45,54 @@ const MovieContent = ({ movie, list, setMovieList }) => {
 
   return (
     <div className={styles.movieContent}>
-      <img
-        width={180}
-        height={180}
-        src={movie.movieImageUrl}
-        alt="book image"
-      />
+      {!movie.movieImageUrl ? (
+        <FaVideo className={styles["movieContent-icon"]} size={"7em"} />
+      ) : (
+        <img
+          width={180}
+          height={180}
+          src={movie.movieImageUrl}
+          alt="book image"
+        />
+      )}
+      {!movie.movieImageUrl ? <h2>Movie: {movie.title}</h2> :''}
       <label className={styles["movieContent-genre"]}>
         Genre: <b>{movie.filmGenre}</b>
       </label>
+      <div className={styles["movieContent-rating"]}>
+        <ReactStars
+          count={5}
+          onChange={ratingChanged}
+          size={24}
+          edit={currentUser.hasOwnProperty("userId") ? true : false}
+          activeColor="#ffd700"
+          value={movie.rating}
+        ></ReactStars>
+      </div>
       {currentUser.hasOwnProperty("userId") ? (
-        <button className={styles["movieContent-btnWatch"]} 
-        onClick={handleClick}
+        <button
+          className={styles["movieContent-btnWatch"]}
+          onClick={handleClick}
         >
           Watch
         </button>
       ) : (
         ""
       )}
-     <button
-        className={styles["movieContent-btnAdd"]}
-        onClick={
-          list
-            ? () => handleDeleteMovieFromLibrary(movie.id)
-            : () => handleAddMovieToLibrary(movie.id)
-        }
-      >
-        {list ? "Remove from Library" : "Add to Library"}
-      </button>
+      {currentUser.hasOwnProperty("userId") ? (
+        <button
+        className={list ? styles["movieContent-btnAdd"]: styles['movieContent-removeBtn']}
+          onClick={
+            list
+              ? () => handleDeleteMovieFromLibrary(movie.id)
+              : () => handleAddMovieToLibrary(movie.id)
+          }
+        >
+          {list ? "Remove from Library" : "Add to Library"}
+        </button>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

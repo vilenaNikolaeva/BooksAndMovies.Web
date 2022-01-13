@@ -1,13 +1,25 @@
 .headerContainer {
-  height: 6rem;
-  display: flex;
-  justify-content: end;
-  padding: 4rem;
-  list-style-type: none;
-  font-size: 2rem;
-  font-weight: 500;
-
-    li{
+    display: flex;
+    position: sticky;
+    justify-content: space-between;
+    list-style-type: none;
+    font-size: 2rem;
+    font-weight: 500;
+    padding-left: 5em;
+    padding-right: 3.5em;
+    padding-top: 4rem;
+    border-bottom: 1px solid white;
+    &-homeBtn{
+        svg{
+            color:white;
+            margin-left: 7rem;
+            text-decoration: white;
+        }
+    }
+    &-menuContainer{
+        display: flex;
+    }
+    &-menu{
         margin-right: 3rem;
         padding: 1rem;
         a {

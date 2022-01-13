@@ -9,15 +9,14 @@ const HomePage = () => {
       <div className={styles.homeContainer}>
         <div className={styles["homeContainer-titles"]}>
           <label className={styles["homeContent-titles-homeTitle"]}>
-            For those who wonder what to do in their free time
+            Wonder what to do in your free time?! 
           </label>
           <label className={styles["homeContent-titles-catalogsTitle"]}>
-            Check below what the catalogs offer
+            Check out the catalogs below 
           </label>
         </div>
         <Link to="/BooksContainer"> Catalog Books</Link>
         <Link to="/MoviesContainer"> Catalog Movies</Link>
-        <Link to="/TvSeriesContainer"> Catalog Tv Series</Link>
       </div>
     </PageWrapper>
   );

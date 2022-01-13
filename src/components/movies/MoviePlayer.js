@@ -17,7 +17,7 @@ const MoviePlayer = () => {
       <div className={styles.playerContainer}>
           <button className={styles['playerContainer-closeBtn']} onClick={closeModal}>X</button>
         <ReactPlayer
-          url={"https://www.youtube.com/watch?v=DHRlGl0u1Ds"}
+          url={movie.movieUrl}
           width="100%"
           height="100%"
           config={{

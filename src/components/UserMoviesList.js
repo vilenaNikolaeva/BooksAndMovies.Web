@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import requester from "../api/requester";
 import { useUser } from "../context/UserCtx";
-import styles from '../assets/scss/componentsStyles/UserMovieList.module.scss';
-import MovieContent from './movies/MovieContent';
+import styles from "../assets/scss/componentsStyles/UserMovieList.module.scss";
+import MovieContent from "./movies/MovieContent";
 
 const UserMoviesList = () => {
   const [movieList, setMovieList] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [showMovies, setShowmovies] = useState(true);
   const { currentUser } = useUser();
 
   useEffect(() => {
@@ -23,11 +24,20 @@ const UserMoviesList = () => {
   }, [isLoading, setMovieList]);
 
   return (
-    <div className={styles.movieListContainer} >
-      <h1>Your Movies </h1>
-      {movieList?.map((m, index) => (
-        <MovieContent key={index} movie={m} list={"list"} setMovieList={setMovieList} />
-      ))}
+    <div className={styles.movieListContainer}>
+      <h1>
+        <button onClick={() => setShowmovies(!showMovies)}>Your Movies</button>
+      </h1>
+      <div hidden={showMovies}>
+        {movieList?.map((m, index) => (
+          <MovieContent
+            key={index}
+            movie={m}
+            list={"list"}
+            setMovieList={setMovieList}
+          />
+        ))}
+      </div>
     </div>
   );
 };
