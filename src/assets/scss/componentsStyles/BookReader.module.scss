@@ -1,12 +1,34 @@
-.modalContent{
-    background-color: rgb(245, 237, 237);
-    border-radius: 5rem;
-    width: 55.5rem;
-    height: 65rem;
-    overflow-y: auto;
-    box-shadow: 0px 9px 40px 20px rgb(17 25 50 / 20%);
-    &-page{
-        max-width: 400px;
-        width: 90vw;
+.readerContainer {
+  background-color: rgb(245, 237, 237);
+  border-radius: 5rem;
+  width: 45.5rem;
+  height: 55rem;
+  overflow-y: auto;
+  box-shadow: 0px 9px 40px 20px rgb(17 25 50 / 20%);
+  &-page {
+    max-width: 400px;
+    width: 90vw;
+  }
+  a{
+    margin-top: 39rem;
+  }
+  &-btnContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 45rem;
+    button {
+        height: 3rem;
+      width: 9rem;
+      max-height: 10rem;
+      margin: 0.3rem;
+      color: #442a60;
+      background-color: white;
+      box-shadow: 3px 15px 20px 2px rgb(117 109 109 / 20%);
+      font-weight: 500;
     }
+    button:hover {
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
 }
