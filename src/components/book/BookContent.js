@@ -2,47 +2,36 @@ import React from "react";
 import { useUser } from "../../context/UserCtx";
 import { useModal } from "../../context/ModalCtx";
 import { useCatalog } from "../../context/CatalogCtx";
-import requester from "../../api/requester";
 import ReactStars from "react-rating-stars-component";
 import {FaBookOpen} from 'react-icons/fa';
 
 import styles from "../../assets/scss/componentsStyles/BookContent.module.scss";
+import {toast} from 'react-toastify';
+import userService from './../../services/userService';
 
 const BookContent = ({ book, list, setBooksList }) => {
   const { setIsOpenBookReader } = useModal();
   const { updateBookContext } = useCatalog();
   const { currentUser } = useUser();
 
-  const handleClick = () => {
-    updateBookContext(book);
-    setIsOpenBookReader(true);
-    // console.log(book.bookFileUrl);
-    // return <a href={book.bookFileUrl} />;
-  };
   const ratingChanged = (rating) => {
-    requester
-      .post(`User/BookRating`, {
-        userId: currentUser.userId,
-        bookId: book.id,
-        rating: rating,
-      })
-      .then((res) => (console.log(res), updateBookContext(res)))
-      .finally((fnl) => console.log(fnl));
+    userService.postUserBookRating(currentUser.userId,book.id,rating)
+      .then((res) => updateBookContext(res))
+      .catch((err) => toast.error(err));
   };
   const handleAddBookToLibrary = (bookId) => {
-    return requester
-      .post(`User/Book/?userId=${currentUser.userId}&id=${bookId}`)
+    userService.addBookToUserLibrary(currentUser.userId,bookId)
       .then((res) => res)
-      .finally((res) => console.log("set is Loading", res));
+      .catch((err) => toast.error(err));
   };
   const handleDeleteBookFromLibrary = (bookId) => {
-    return requester
-      .remove(`User/Book?userId=${currentUser.userId}&id=${bookId}`)
+    userService.removeBookToUserLibrary(currentUser.userId,bookId)
       .then((res) => setBooksList(res))
-      .finally((err) => console.log(err));
+      .catch((err) => toast.error(err));
   };
   return (
     <div className={styles.bookContent}>
+      <p> {book.readed ? <b>Readed </b> : <b>Not read</b>}</p>
       <label className={styles["bookContent-title"]}>{book.title}</label>
       {!book.bookImageUrl ? (
         <FaBookOpen  className={styles["bookContent-icon"]} size={'7em'} />
@@ -67,10 +56,10 @@ const BookContent = ({ book, list, setBooksList }) => {
           value={book.rating}
         ></ReactStars>
       </div>
-      {currentUser.hasOwnProperty("userId") ? (
-        <button className={styles["bookContent-btnRead"]} onClick={handleClick}>
+        {currentUser.hasOwnProperty("userId") ? (
+        <a className={styles["bookContent-btnRead"]}  href={book.bookFileUrl} target="_blank" >
           Read
-        </button>
+        </a>
       ) : (
         ""
       )}

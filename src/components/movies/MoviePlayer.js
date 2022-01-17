@@ -6,26 +6,30 @@ import ReactPlayer from "react-player";
 
 import styles from "../../assets/scss/componentsStyles/MoviePlayer.module.scss";
 import requester from "./../../api/requester";
+import { useUser } from "./../../context/UserCtx";
+import {toast} from 'react-toastify';
+import movieService from './../../services/movieService';
 
 const MoviePlayer = () => {
   const { isOpenMoviePlayer, closeModal } = useModal();
-  const { movie } = useCatalog();
-  const [movieProgress, setMovieProgress] = useState();
-  const [watchComplate, setWatchComplate] = useState(false);
+  const { movie, updateMovieContext } = useCatalog();
+  const { currentUser } = useUser();
+  const [watchComplеte, setWatchComplеte] = useState(false);
 
   useEffect(() => {
-    // requester
-  }, [watchComplate]);
+    if (watchComplеte) {
+      movieService.updateUserMovieWatchedStatus(currentUser.userId,movie.id,watchComplеte)
+        .then((res) => updateMovieContext(res))
+        .finally((err) => toast.error(err));
+    }
+  }, [watchComplеte]);
 
-  const updatePlayerProgress = (played) => {
-    console.log(played);
+  const updatePlayerProgress = (player) => {
+    if (player.played >= 0.99 && !movie.watched) {
+      setWatchComplеte(true);
+      // setWatchComplеte(true);
 
-    if (played >= 0.9 && !watchComplate) {
-      setWatchComplate(true);
-    } else {
       //update movie context progress
-
-      
       //         loaded: 0.8535082819630407
       // loadedSeconds: 125.46571744856699
       // played: 0.018559876837386566
@@ -49,7 +53,6 @@ const MoviePlayer = () => {
           width="100%"
           height="100%"
           controls={true}
-          // onPlay={movie.progress}
           onProgress={updatePlayerProgress}
           config={{
             youtube: {

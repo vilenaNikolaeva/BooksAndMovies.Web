@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useUser } from "./../context/UserCtx";
 import styles from "../assets/scss/componentsStyles/Header.module.scss";
 import { useNavigate } from "react-router-dom";
-import UserBooksList from "./UserBooksList";
 
 const Header = () => {
   const { currentUser, clearUserInfo } = useUser();

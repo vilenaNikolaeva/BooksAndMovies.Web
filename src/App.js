@@ -4,9 +4,11 @@ import AppRouter from "./api/AppRouter";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PageWrapper from "./wrappers/PageWrapper";
-import app from "./api/firebaseConfig.js";
 import { ModalProvider } from "./context/ModalCtx";
 import { CatalogProvider } from "./context/CatalogCtx";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -21,6 +23,10 @@ function App() {
           </ModalProvider>
           <Footer />
         </CatalogProvider>
+        <ToastContainer
+          theme="light"
+          style={{ fontSize: "1em", fontWeight: "bold" }}
+        />
       </UserProvider>
     </div>
   );

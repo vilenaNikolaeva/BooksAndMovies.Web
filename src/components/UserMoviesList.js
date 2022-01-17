@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import requester from "../api/requester";
 import { useUser } from "../context/UserCtx";
-import styles from "../assets/scss/componentsStyles/UserMovieList.module.scss";
 import MovieContent from "./movies/MovieContent";
+
+import styles from "../assets/scss/componentsStyles/UserMovieList.module.scss";
+import {toast} from 'react-toastify';
+import userService from './../services/userService';
 
 const UserMoviesList = () => {
   const [movieList, setMovieList] = useState();
@@ -13,13 +16,15 @@ const UserMoviesList = () => {
   useEffect(() => {
     if (isLoading) return;
     setIsLoading(true);
-    requester
-      .get(`User/Movies?id=${currentUser.userId}`)
+    userService.getUserMoviesList(currentUser.userId)
       .then((res) => {
+        if(res.hasOwnProperty('status')){
+          return toast.error(res.title)
+        }
         setMovieList(res);
         setIsLoading(false);
       })
-      .finally(() => setIsLoading(false));
+      .catch((err) => (toast.error(err),setIsLoading(false)));
     setIsLoading(false);
   }, [isLoading, setMovieList]);
 

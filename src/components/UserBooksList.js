@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import requester from "../api/requester";
 import { useUser } from "../context/UserCtx";
 import BookContent from "./book/BookContent.js";
+
 import styles from "../assets/scss/componentsStyles/UserBooksList.module.scss";
+import userService from "./../services/userService";
+import { toast } from 'react-toastify';
 
 const UserBooksList = () => {
   const [booksList, setBooksList] = useState();
@@ -13,9 +16,12 @@ const UserBooksList = () => {
   useEffect(() => {
     if (isLoading) return;
     setIsLoading(true);
-    requester
-      .get(`User/Books?id=${currentUser.userId}`)
+    userService
+      .getUserBooksList(currentUser.userId)
       .then((res) => {
+        if(res.hasOwnProperty('status')){
+          return toast.error(res.title)
+        }
         setBooksList(res);
         setIsLoading(false);
       })
@@ -29,7 +35,6 @@ const UserBooksList = () => {
         <button onClick={() => setShowBooks(!showBooks)}>Your Books</button>
       </h1>
       <div hidden={showBooks}>
-        {/* <h1>Your Books</h1> */}
         {booksList?.map((b, index) => (
           <BookContent
             key={index}

@@ -4,10 +4,11 @@ import { useUser } from "./../../context/UserCtx";
 import { useCatalog } from "./../../context/CatalogCtx";
 import requester from "./../../api/requester";
 import ReactStars from "react-rating-stars-component";
-import ReactPlayer from "react-player";
 import { FaVideo } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 import styles from "../../assets/scss/componentsStyles/MovieContent.module.scss";
+import userService from "./../../services/userService";
 
 const MovieContent = ({ movie, list, setMovieList }) => {
   const { setIsOpenMoviePlayer } = useModal();
@@ -20,31 +21,25 @@ const MovieContent = ({ movie, list, setMovieList }) => {
   };
 
   const ratingChanged = (rating) => {
-    requester
-      .post(`User/MovieRating`, {
-        userId: currentUser.userId,
-        movieId: movie.id,
-        rating: rating,
-      })
-      .then((res) => (console.log(res), updateMovieContext(res)))
-      .finally((fnl) => console.log(fnl));
+    userService.postUserMovieRating(currentUser.userId, movie.id, rating)
+      .then((res) => updateMovieContext(res))
+      .catch((err) => toast.error(err));
   };
   const handleAddMovieToLibrary = (movieId) => {
-    return requester
-      .post(`User/Movie/?userId=${currentUser.userId}&id=${movieId}`)
+    userService.addMovieToUserLibrary(currentUser.userId,movieId)
       .then((res) => res)
-      .finally((res) => console.log("set is Loading", res));
+      .catch((err) => toast.error(err));
   };
 
   const handleDeleteMovieFromLibrary = (movieId) => {
-    return requester
-      .remove(`User/Movie?userId=${currentUser.userId}&id=${movieId}`)
+    userService.removeMovieFromUserLibrary(currentUser.userId,movieId)
       .then((res) => setMovieList(res))
-      .finally((err) => console.log(err));
+      .catch((err) => toast.error(err));
   };
 
   return (
     <div className={styles.movieContent}>
+      <p> {movie.watched ? <b>Watched </b> : <b>Not watched</b>}</p>
       {!movie.movieImageUrl ? (
         <FaVideo className={styles["movieContent-icon"]} size={"7em"} />
       ) : (
@@ -55,7 +50,7 @@ const MovieContent = ({ movie, list, setMovieList }) => {
           alt="book image"
         />
       )}
-      {!movie.movieImageUrl ? <h2>Movie: {movie.title}</h2> :''}
+      {!movie.movieImageUrl ? <h2>Movie: {movie.title}</h2> : ""}
       <label className={styles["movieContent-genre"]}>
         Genre: <b>{movie.filmGenre}</b>
       </label>
@@ -81,7 +76,11 @@ const MovieContent = ({ movie, list, setMovieList }) => {
       )}
       {currentUser.hasOwnProperty("userId") ? (
         <button
-        className={list ? styles["movieContent-btnAdd"]: styles['movieContent-removeBtn']}
+          className={
+            list
+              ? styles["movieContent-btnAdd"]
+              : styles["movieContent-removeBtn"]
+          }
           onClick={
             list
               ? () => handleDeleteMovieFromLibrary(movie.id)

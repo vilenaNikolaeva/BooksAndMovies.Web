@@ -8,12 +8,12 @@ const HomePage = () => {
     <PageWrapper>
       <div className={styles.homeContainer}>
         <div className={styles["homeContainer-titles"]}>
-          <label className={styles["homeContent-titles-homeTitle"]}>
+          <h1 className={styles["homeContent-titles-homeTitle"]}>
             Wonder what to do in your free time?! 
-          </label>
-          <label className={styles["homeContent-titles-catalogsTitle"]}>
+          </h1>
+          <h2 className={styles["homeContent-titles-catalogsTitle"]}>
             Check out the catalogs below 
-          </label>
+          </h2>
         </div>
         <Link to="/BooksContainer"> Catalog Books</Link>
         <Link to="/MoviesContainer"> Catalog Movies</Link>

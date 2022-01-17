@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import requester from "../../api/requester";
 import { useUser } from "../../context/UserCtx";
 import { useNavigate } from "react-router-dom";
-import Header from './../Header';
+import {toast} from  "react-toastify";
 
 import styles from '../../assets/scss/componentsStyles/UserForm.module.scss'
+import userService from './../../services/userService';
 
 const Login = () => {
   const { updateUserContext } = useUser();
@@ -22,19 +23,22 @@ const Login = () => {
 
     try {
       setIsLoading(true);
-      requester
-        .post("Authentication/login", { email: email, password: password })
-        .then((res) => {
-          updateUserContext(res);
-          setIsLoading(false);
-          navigate("/");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+       userService.addUserLoginDetails(email,password)
+       .then((res) => {
+            if(res.hasOwnProperty('status')){
+              return toast.error(res.title);
+            }
+            updateUserContext(res);
+            setIsLoading(false);
+            toast.success('Logged in');
+            navigate("/");
+          })
+          .catch((err) => {
+            toast.error("Error Occured.Try Again.");
+          });
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      toast.error("Error Occured.Try Again.");
       setIsLoading(false);
     }
   };
@@ -42,6 +46,7 @@ const Login = () => {
   return (
     <>
       <div className={styles.formContainer}>
+        <h1>Login</h1>
         <form onSubmit={onLoginSubmit} className={styles['formContainer-form']}>
           <input
             name="email"

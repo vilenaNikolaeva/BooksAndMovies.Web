@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import requester from "../../api/requester";
 import BookContent from "./BookContent.js";
 import styles from "../../assets/scss/componentsStyles/BooksContainer.module.scss";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import {toast} from "react-toastify";
+import bookService from "../../services/bookService";
 
 const BooksContainer = () => {
   const [books, setBooks] = useState();
@@ -10,15 +11,13 @@ const BooksContainer = () => {
 
   useEffect(() => {
     if (isLoading) return;
-
     setIsLoading(true);
-    requester
-      .get("Book")
+    bookService.getAllBooksURL()
       .then((res) => {
         setBooks(res);
         setIsLoading(false);
       })
-      .finally(() => setIsLoading(false));
+      .catch((err) => (toast.error(err), setIsLoading(false)));
     setIsLoading(false);
   }, [isLoading, setBooks]);
 

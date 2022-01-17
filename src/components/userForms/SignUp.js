@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "./../../context/UserCtx";
 import requester from "./../../api/requester";
+import {toast} from  "react-toastify";
 
 import styles from '../../assets/scss/componentsStyles/UserForm.module.scss';
+import userService from './../../services/userService';
 
 const SignUp = () => {
   const { updateUserContext } = useUser();
@@ -18,28 +20,27 @@ const SignUp = () => {
     e.preventDefault();
 
     if (email === "" || password === "" || username === "") {
-      return <p> ERROR --All fields are required!</p>;
+      return toast.error(' ERROR --All fields are required!');
     }
 
     try {
       setIsLoading(true);
-      requester
-        .post("Authentication/signup", {
-          username: username,
-          email: email,
-          password: password,
-        })
+      userService.addUserRegisterDetails(username,email,password)
         .then((res) => {
+          if(res.hasOwnProperty('status')){
+            return toast.error(res.title);
+          }
           updateUserContext(res);
           setIsLoading(false);
+          toast.success('Successfully signed up');
           navigate("/");
         })
         .catch((err) => {
-          console.log(err);
+          toast.err('Error Occured.Try Again!')
         });
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      toast.err('Error Occured.Try Again!')
       setIsLoading(false);
     }
   };
@@ -47,6 +48,7 @@ const SignUp = () => {
   return (
     <>
       <div className={styles.formContainer}>
+      <h1>Sign Up</h1>
         <form onSubmit={onSignUpSubmit} className={styles['formContainer-form']}>
           <input
             name="username"

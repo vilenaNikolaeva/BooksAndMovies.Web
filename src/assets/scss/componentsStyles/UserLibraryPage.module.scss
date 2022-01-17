@@ -1,5 +1,9 @@
 .libraryContainer {
   height: 100%;
+  @media screen and (max-width:425px) {
+    display: flex;
+    justify-content: center;
+  }
   &-box {
     display: flex;
     justify-content: center;

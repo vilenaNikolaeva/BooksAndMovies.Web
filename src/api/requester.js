@@ -1,4 +1,5 @@
 import { BASE_URL } from './../api/constants';
+import { toast } from 'react-toastify';
 
 function getToken() {
     return 'Bearer ' + sessionStorage.token;
@@ -13,7 +14,7 @@ function get(endpoint) {
         }
     })
         .then(res => res.json())
-        .catch(err => console.log(err));
+        .catch(err => toast.error(err));
 }
 
 function post(endpoint, data) {
@@ -26,7 +27,7 @@ function post(endpoint, data) {
         body: JSON.stringify(data)
     })
         .then(res => res.json())
-        .catch(err => console.log(err));
+        .catch(err => toast.error(err));
 }
 function put(endpoint, data) {
     return fetch(BASE_URL + endpoint, {
@@ -38,7 +39,7 @@ function put(endpoint, data) {
         body: JSON.stringify(data)
     })
         .then(res => res.json())
-        .catch(err => console.log(err));
+        .catch(err => toast.error(err));
 }
 
 function remove (endpoint) {
@@ -50,7 +51,7 @@ function remove (endpoint) {
         }
     })
         .then(res => res.json())
-        .catch(err => console.log(err));
+        .catch(err => toast.error(err));
 }
 
 let requester = {

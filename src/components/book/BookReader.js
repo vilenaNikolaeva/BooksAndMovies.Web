@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from "react";
+import React, { useState, } from "react";
 import styles from "../../assets/scss/componentsStyles/BookReader.module.scss";
 import { useCatalog } from "../../context/CatalogCtx";
 import { useModal } from "./../../context/ModalCtx";
