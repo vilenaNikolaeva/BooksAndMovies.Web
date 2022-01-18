@@ -15,6 +15,8 @@ through the platform without redirection, as well as movies to be loaded with al
 ### First
 Make sure the server is up and running
 
-### Open web app project 
+## Open web app project 
+### Second
+
 1. open new terminal and type - " npm install " 
 2. after the operation is done type - "  npm start  " 
