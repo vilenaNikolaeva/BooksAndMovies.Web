@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "./../../context/UserCtx";
-import requester from "./../../api/requester";
 import {toast} from  "react-toastify";
 
 import styles from '../../assets/scss/componentsStyles/UserForm.module.scss';
@@ -19,8 +18,11 @@ const SignUp = () => {
   const onSignUpSubmit = (e) => {
     e.preventDefault();
 
-    if (email === "" || password === "" || username === "") {
+    if (email === "" || password === "" || username === "" ) {
       return toast.error(' ERROR --All fields are required!');
+    }
+    if( password !== repeatedPass){
+      return toast.error('Passwords should match.')
     }
 
     try {
@@ -53,7 +55,7 @@ const SignUp = () => {
           <input
             name="username"
             type="text"
-            placeholder="Place your username..."
+            placeholder="** Place your username..."
             value={username}
             onChange={(e) => {
               setUsername(e.target.value);
@@ -62,7 +64,7 @@ const SignUp = () => {
           <input
             name="email"
             type="email"
-            placeholder="Place your email..."
+            placeholder=" ** Place your email..."
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
@@ -71,7 +73,7 @@ const SignUp = () => {
           <input
             name="password"
             type="password"
-            placeholder="Place your password..."
+            placeholder="** Place your password..."
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
@@ -80,7 +82,7 @@ const SignUp = () => {
           <input
             name="repeatedPass"
             type="password"
-            placeholder="Repeat your password..."
+            placeholder="** Repeat your password..."
             value={repeatedPass}
             onChange={(e) => {
               setRepeatedPass(e.target.value);

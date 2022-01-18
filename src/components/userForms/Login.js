@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import requester from "../../api/requester";
 import { useUser } from "../../context/UserCtx";
 import { useNavigate } from "react-router-dom";
 import {toast} from  "react-toastify";
@@ -18,7 +17,7 @@ const Login = () => {
     e.preventDefault();
 
     if (email === "" || password === "") {
-      return <p> ERROR --All fields are required!</p>;
+      return toast.error('ERROR --All fields are required!')
     }
 
     try {
@@ -26,7 +25,7 @@ const Login = () => {
        userService.addUserLoginDetails(email,password)
        .then((res) => {
             if(res.hasOwnProperty('status')){
-              return toast.error(res.title);
+              return toast.error(`Error Occured. --Wrong email ot password!`);
             }
             updateUserContext(res);
             setIsLoading(false);

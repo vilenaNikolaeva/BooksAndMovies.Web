@@ -21,18 +21,17 @@ const BookContent = ({ book, list, setBooksList }) => {
   };
   const handleAddBookToLibrary = (bookId) => {
     userService.addBookToUserLibrary(currentUser.userId,bookId)
-      .then((res) => res)
+      .then((res) => toast.success('Added'))
       .catch((err) => toast.error(err));
   };
   const handleDeleteBookFromLibrary = (bookId) => {
     userService.removeBookToUserLibrary(currentUser.userId,bookId)
-      .then((res) => setBooksList(res))
+      .then((res) => (toast.success('Removed'),setBooksList(res)))
       .catch((err) => toast.error(err));
   };
   return (
     <div className={styles.bookContent}>
       <p> {book.readed ? <b>Readed </b> : <b>Not read</b>}</p>
-      <label className={styles["bookContent-title"]}>{book.title}</label>
       {!book.bookImageUrl ? (
         <FaBookOpen  className={styles["bookContent-icon"]} size={'7em'} />
       ) : (
@@ -43,8 +42,9 @@ const BookContent = ({ book, list, setBooksList }) => {
           alt="book image"
         />
       )}
+       <label className={styles["bookContent-title"]}>{book.title}</label>
       <label className={styles["bookContent-authorTitle"]}>
-        Author: <b>{book.author}</b>
+        Author: {book.author}
       </label>
       <div className={styles["bookContent-rating"]}>
         <ReactStars

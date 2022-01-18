@@ -23,11 +23,11 @@ function App() {
           </ModalProvider>
           <Footer />
         </CatalogProvider>
-        <ToastContainer
+      </UserProvider>
+      <ToastContainer
           theme="light"
           style={{ fontSize: "1em", fontWeight: "bold" }}
         />
-      </UserProvider>
     </div>
   );
 }

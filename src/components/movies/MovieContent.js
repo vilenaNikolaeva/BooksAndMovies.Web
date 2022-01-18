@@ -27,13 +27,13 @@ const MovieContent = ({ movie, list, setMovieList }) => {
   };
   const handleAddMovieToLibrary = (movieId) => {
     userService.addMovieToUserLibrary(currentUser.userId,movieId)
-      .then((res) => res)
+      .then((res) => toast.success('Added'))
       .catch((err) => toast.error(err));
   };
 
   const handleDeleteMovieFromLibrary = (movieId) => {
     userService.removeMovieFromUserLibrary(currentUser.userId,movieId)
-      .then((res) => setMovieList(res))
+      .then((res) =>(toast.success('Removed'), setMovieList(res)))
       .catch((err) => toast.error(err));
   };
 
@@ -52,7 +52,10 @@ const MovieContent = ({ movie, list, setMovieList }) => {
       )}
       {!movie.movieImageUrl ? <h2>Movie: {movie.title}</h2> : ""}
       <label className={styles["movieContent-genre"]}>
-        Genre: <b>{movie.filmGenre}</b>
+        <b>{movie.title}</b>
+      </label>
+      <label className={styles["movieContent-genre"]}>
+        {movie.filmGenre}
       </label>
       <div className={styles["movieContent-rating"]}>
         <ReactStars

@@ -23,12 +23,15 @@ const Header = () => {
         </li>
       </div>
       <div className={styles["headerContainer-menuContainer"]}>
+      <li className={styles["headerContainer-menu"]}>
+              <Link to="/books">Books </Link>
+            </li>
+            <li className={styles["headerContainer-menu"]}>
+              <Link to="/movies">Movies </Link>
+            </li>
         {currentUser.hasOwnProperty("token") ||
         typeof currentUser === "string" ? (
           <>
-            <li className={styles["headerContainer-menu"]}>
-              <Link to="/">Catalogs </Link>
-            </li>
             <li className={styles["headerContainer-menu"]}>
               <Link to="/userLibrary"> User Library</Link>
             </li>

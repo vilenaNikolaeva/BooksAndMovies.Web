@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import requester from "../api/requester";
 import { useUser } from "../context/UserCtx";
 import BookContent from "./book/BookContent.js";
 

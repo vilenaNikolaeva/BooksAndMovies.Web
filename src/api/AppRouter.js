@@ -14,8 +14,8 @@ function AppRouter() {
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/signup" element={<SignUp />} />
       <Route exact path="/userLibrary" element={<UserLibrary/>} />
-      <Route exact path="/booksContainer" element={<BooksContainer/>} />
-      <Route exact path="/moviesCOntainer" element={<MoviesContainer/>} />
+      <Route exact path="/books" element={<BooksContainer/>} />
+      <Route exact path="/movies" element={<MoviesContainer/>} />
     </Routes>
   );
 }
